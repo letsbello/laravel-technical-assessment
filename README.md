@@ -1,116 +1,51 @@
-# Getachew Movie Database Assessment
+# Laravel Technical Assessment
 
-A Laravel application demonstrating the use of **clean code architecture**, **Service Pattern**, and **Livewire** components.
+## Instructions
+1. Create a new repository in your Github account by cloning this repo
+2. Establish an initial commit with the provided code.
+3. Complete the functional requirements below & commit these changes to your repository. Open a PR with your changes so that they can be reviewed.
+4. Share your repository with us.
 
----
+## Setup
 
-## Features
+### System Requirements
+-   Docker Desktop
+-   WSL2 (Windows only)
 
-- 🎬 Display a list of **actors** and their **associated movies**
-- 🔍 **Filter actors** by name (search form)
-- 🚀 **Search Star Wars characters** using the [SWAPI API](https://swapi.dev/)
-- 🧪 **Automated tests** included for both actor search and Star Wars search components
+Start by forking the repository to your own GitHub account. Then clone the forked repository to your local machine.
 
----
+```bash
+git clone https://github.com/your-username/laravel-assessment-template
+cd laravel-technical-assessment
+```
 
-## Technology Stack
+We use [Laravel Sail](https://laravel.com/docs/12.x/sail) so you should have good working knowledge of Docker. Start by copying over your env example file.
 
-- PHP 8.2+
-- Laravel 12
-- Livewire (Flux & Volt)
-- MySQL (for development)
-- SQLite (for testing)
-- Tailwind CSS
-- Laravel Sail (Docker)
-- PestPHP (for testing)
+```bash
+cp .env.example .env
+```
 
----
+And then let's install sail.
 
-## Installation
+### Running the application
 
-### Using Laravel Sail (Docker)
+Start the application using sail.
 
-1. **Clone the repository:**
-   ```bash
-   git clone <repository-url>
-   cd repository-name
-   ```
+You should now be able to access the application at `http://localhost`.
 
-2. **Install Composer dependencies:**
-   ```bash
-   docker run --rm        -u "$(id -u):$(id -g)"        -v "$(pwd):/var/www/html"        -w /var/www/html        composer:latest composer install --ignore-platform-reqs
-   ```
+You can stop the application with `Ctrl+C` and then run `docker compose down` to remove the containers.
 
-3. **Copy environment variables file:**
-   ```bash
-   cp .env.example .env
-   ```
+## Requirements
 
-4. **Start Docker containers:**
-   ```bash
-   ./vendor/bin/sail up -d
-   ```
+This assessment is to see how your write clean, readable code, and how you structure your application. We're not awarding points on frontend styling but you can use whatever framework if you like.
 
-5. **Generate the application key:**
-   ```bash
-   ./vendor/bin/sail artisan key:generate
-   ```
+The application should:
 
-6. **Run database migrations and seeders:**
-   ```bash
-   ./vendor/bin/sail artisan migrate --seed
-   ```
+-   Seed a database with at least 5 actors and at least 3 movies per actor
+-   Use Eloquent to define the relationship between actors and movies
+-   Have a view that displays the list of actors and their associated movies
+-   Also include one input that allows the list of actors to be filtered. This can either be done with just PHP or with JavaScript, whichever you prefer. We're just looking for the end result.
+-   Have a view with one input that allows the user to search people via the Star Wars API (https://swapi.dev/documentation#people) and then displays the data.
+    -   The API call should be done on the back end.
 
-7. **Install NPM dependencies and build assets:**
-   ```bash
-   ./vendor/bin/sail npm install
-   ./vendor/bin/sail npm run dev
-   ```
-
-8. **Access the application** at:
-   ```
-   http://localhost
-   ```
-
----
-
-## Running Tests 🧪
-
-This project includes **automated tests** for both Actor and Star Wars Livewire components.
-
-1. **Make sure your `.env.testing` or `phpunit.xml` is configured for SQLite memory database.**
-
-2. **Run all tests:**
-   ```bash
-   ./vendor/bin/sail artisan test
-   ```
-
-3. **Or run only Livewire component tests:**
-   ```bash
-   ./vendor/bin/sail artisan test tests/Feature/Livewire
-   ```
-
-✅ Tests cover:
-- Actor list search validation and success
-- Star Wars API search validation and success
-- Proper use of Service classes injected via `boot()` method
-- In-memory database testing (no external database required)
-
----
-
-## Notes
-
-- Livewire components use the `boot()` method for clean Dependency Injection (best practice for Livewire 3).
-- External API requests (SWAPI) are done on the backend side using Laravel's `Http` client.
-- Tailwind CSS is used for basic styling.
-- Testing is isolated from the database (using SQLite memory).
-- Actor seeders create 5+ actors with 3+ movies each, satisfying project requirements.
-
----
-
-# 🎯 This project fully satisfies the assessment requirements for:
-- Clean code structure
-- Service layer pattern
-- Laravel Livewire interaction
-- Backend API handling
-- Full Feature Testing included
+You should use [Laravel Livewire](https://livewire.laravel.com/) for your views and actions.
