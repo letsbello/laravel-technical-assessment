@@ -1,51 +1,65 @@
-# Laravel Technical Assessment
+# Getachew Movie Database Assessment
 
-## Instructions
-1. Create a new repository in your Github account by cloning this repo
-2. Establish an initial commit with the provided code.
-3. Complete the functional requirements below & commit these changes to your repository. Open a PR with your changes so that they can be reviewed.
-4. Share your repository with us.
+A Laravel application that demonstrates the use of clean code and the Service Pattern with Livewire.
 
-## Setup
+## Features
 
-### System Requirements
--   Docker Desktop
--   WSL2 (Windows only)
+- Display a list of actors and their associated movies
+- Filter actors by name
+- Search Star Wars characters using the [SWAPI API](https://swapi.dev/)
 
-Start by forking the repository to your own GitHub account. Then clone the forked repository to your local machine.
+## Technology Stack
 
-```bash
-git clone https://github.com/your-username/laravel-assessment-template
-cd laravel-technical-assessment
-```
+- PHP 8.2+
+- Laravel 12
+- Livewire (Flux & Volt)
+- MySQL
+- Tailwind CSS
+- Laravel Sail (Docker)
 
-We use [Laravel Sail](https://laravel.com/docs/12.x/sail) so you should have good working knowledge of Docker. Start by copying over your env example file.
+## Installation
 
-```bash
-cp .env.example .env
-```
+### Using Laravel Sail (Docker)
 
-And then let's install sail.
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   cd repository-name
+   ```
 
-### Running the application
+2. Install composer dependencies:
+   ```bash
+   docker run --rm \
+       -u "$(id -u):$(id -g)" \
+       -v "$(pwd):/var/www/html" \
+       -w /var/www/html \
+       composer:latest composer install --ignore-platform-reqs
+   ```
 
-Start the application using sail.
+3. Copy the environment file and update it with your database credentials:
+   ```bash
+   cp .env.example .env
+   ```
 
-You should now be able to access the application at `http://localhost`.
+4. Start the Docker containers:
+   ```bash
+   ./vendor/bin/sail up -d
+   ```
 
-You can stop the application with `Ctrl+C` and then run `docker compose down` to remove the containers.
+5. Generate application key:
+   ```bash
+   ./vendor/bin/sail artisan key:generate
+   ```
 
-## Requirements
+6. Run the database migrations and seed the database:
+   ```bash
+   ./vendor/bin/sail artisan migrate --seed
+   ```
 
-This assessment is to see how your write clean, readable code, and how you structure your application. We're not awarding points on frontend styling but you can use whatever framework if you like.
+7. Install NPM dependencies and build assets:
+   ```bash
+   ./vendor/bin/sail npm install
+   ./vendor/bin/sail npm run dev
+   ```
 
-The application should:
-
--   Seed a database with at least 5 actors and at least 3 movies per actor
--   Use Eloquent to define the relationship between actors and movies
--   Have a view that displays the list of actors and their associated movies
--   Also include one input that allows the list of actors to be filtered. This can either be done with just PHP or with JavaScript, whichever you prefer. We're just looking for the end result.
--   Have a view with one input that allows the user to search people via the Star Wars API (https://swapi.dev/documentation#people) and then displays the data.
-    -   The API call should be done on the back end.
-
-You should use [Laravel Livewire](https://livewire.laravel.com/) for your views and actions.
+8. Access the application at http://localhost
