@@ -3,8 +3,8 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use Illuminate\Support\Facades\Http;
 use Illuminate\View\View;
+use App\Services\StarWarsService;
 
 class StarWarsSearch extends Component
 {
@@ -13,6 +13,13 @@ class StarWarsSearch extends Component
     public bool $searched = false;
     public ?string $error = null;
 
+    private StarWarsService $starWarsService;
+
+    public function boot(StarWarsService $starWarsService): void
+    {
+        $this->starWarsService = $starWarsService;
+    }
+
     public function searchPeople(): void
     {
         $this->validate([
@@ -20,17 +27,10 @@ class StarWarsSearch extends Component
         ]);
 
         try {
-            $response = Http::withoutVerifying()->get('https://swapi.dev/api/people', [
-                'search' => $this->search,
-            ]);
+            $response = $this->starWarsService->searchPeople($this->search);
 
-            if ($response->successful()) {
-                $this->results = $response->json('results') ?? [];
-                $this->error = null;
-            } else {
-                $this->results = [];
-                $this->error = 'Failed to fetch data from Star Wars API.';
-            }
+            $this->results = $response['results'] ?? [];
+            $this->error = $response['error'] ?? null;
         } catch (\Throwable $e) {
             $this->results = [];
             $this->error = 'An error occurred: ' . $e->getMessage();

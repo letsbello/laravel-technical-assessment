@@ -3,7 +3,7 @@
 namespace App\Livewire;
 
 use Livewire\Component;
-use App\Models\Actor;
+use App\Services\ActorService;
 use Illuminate\View\View;
 
 class ActorList extends Component
@@ -13,6 +13,13 @@ class ActorList extends Component
     public bool $searched = false;
     public ?string $error = null;
 
+    private ActorService $actorService;
+
+    public function boot(ActorService $actorService): void
+    {
+        $this->actorService = $actorService;
+    }
+
     public function searchActors(): void
     {
         $this->validate([
@@ -20,11 +27,7 @@ class ActorList extends Component
         ]);
 
         try {
-            $actors = Actor::with('movies')
-                           ->where('name', 'like', '%' . $this->search . '%')
-                           ->orderBy('name')
-                           ->get()
-                           ->toArray();
+            $actors = $this->actorService->searchActors($this->search);
 
             if (count($actors) > 0) {
                 $this->actors = $actors;

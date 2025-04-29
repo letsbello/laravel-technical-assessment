@@ -7,12 +7,6 @@
                     placeholder="Search actors..."
                     class="w-full p-2 border rounded"
             />
-            <button
-                    type="submit"
-                    class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
-            >
-                Search
-            </button>
         </div>
     </form>
 
