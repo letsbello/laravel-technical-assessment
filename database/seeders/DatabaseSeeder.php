@@ -27,7 +27,7 @@ class DatabaseSeeder extends Seeder
         //            MovieSeeder::class,
         //        ]);
 
-        Actor::factory(5)
+        Actor::factory(15)
             ->hasAttached(
                 Movie::factory()->count(3)
             )->create();

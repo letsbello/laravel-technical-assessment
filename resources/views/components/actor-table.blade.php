@@ -1,3 +1,10 @@
+@props([
+    'actors',
+    'previous' => null,
+    'next' => null,
+    'fromAPI' => false
+])
+
 <div>
     <div class="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
         <table class="min-w-full divide-y divide-gray-300">
@@ -47,7 +54,7 @@
                     @if($fromAPI)
                         <td class="px-3 py-5 text-sm whitespace-nowrap text-gray-500">
                             <span
-                               class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-green-600/20 ring-inset">
+                                class="inline-flex items-center rounded-md bg-green-50 px-2 py-1 text-xs font-medium text-green-700 ring-1 ring-green-600/20 ring-inset">
                                 {{ count(data_get($actor, 'films')) }}
                             </span>
                         </td>
@@ -62,7 +69,7 @@
                 </tr>
             @empty
                 <tr>
-                    <td>
+                    <td class="text-2xl">
                         <span>{{ __('No data found') }}</span>
                     </td>
                 </tr>

@@ -27,6 +27,11 @@
             <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
                 <x-actor-table :$actors/>
             </div>
+
+            <!-- Pagination Links -->
+            <div class="mt-4">
+                {{ $actors->links() }}
+            </div>
         </div>
     </div>
 </div>
