@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('actors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('birth_year');
+            $table->year('birth_year');
             $table->string('eye_color');
             $table->string('gender');
             $table->string('hair_color');

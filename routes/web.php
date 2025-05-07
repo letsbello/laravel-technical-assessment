@@ -1,5 +1,7 @@
 <?php
 
+use App\Livewire\Actor\Index as ActorList;
+use App\Livewire\Actor\Show as ActorShow;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -12,6 +14,12 @@ Route::view('dashboard', 'dashboard')
     ->name('dashboard');
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('actors', ActorList::class)
+        ->name('actors.index');
+
+    Route::get('actors/{actor}', ActorShow::class)
+        ->name('actors.show');
+
     Route::redirect('settings', 'settings/profile');
 
     Volt::route('settings/profile', 'settings.profile')->name('settings.profile');
