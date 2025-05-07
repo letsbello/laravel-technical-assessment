@@ -11,20 +11,27 @@ class StarWarsSearch extends Component
 {
     #[Url]
     #[Validate('required|min:1')]
-    public $query = '';
+    public $query = ''; // Search query input
 
     #[Url]
-    public $page = 1;
+    public $page = 1; // Current page number for API pagination
 
-    public $next = '';
+    public $next = ''; // URL for the next page of results
 
-    public $previous = '';
+    public $previous = ''; // URL for the previous page of results
 
-    public $people = [];
+    public $people = []; // List of people fetched from the API
 
+    /**
+     * Perform a search request to the Star Wars API (swapi.dev)
+     * and update the component properties with the results.
+     */
     public function searchPeople()
     {
+        // Validate the search query
         $this->validate();
+
+        // Make an HTTP GET request to fetch people data from the Star Wars API
         $response = Http::withoutVerifying()
             ->get('https://swapi.dev/api/people', [
                 'search' => $this->query,
@@ -37,12 +44,18 @@ class StarWarsSearch extends Component
         }
     }
 
+    /**
+     * Navigate to the previous page and fetch data.
+     */
     public function previousPage()
     {
         $this->page--;
         $this->searchPeople();
     }
 
+    /**
+     * Navigate to the next page and fetch data.
+     */
     public function nextPage()
     {
         $this->page++;
@@ -51,6 +64,7 @@ class StarWarsSearch extends Component
 
     public function render()
     {
+        // Trigger search if a query is present when rendering
         if ($this->query) {
             $this->searchPeople();
         }

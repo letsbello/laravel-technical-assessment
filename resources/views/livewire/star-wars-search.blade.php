@@ -26,8 +26,10 @@
 
     @if($query)
         <div class="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
-            <x-actor-table :actors="$people" :fromAPI="true" :$next :$previous/>
+            <!-- Actor Table Component Rendering -->
+            <x-actor-table :actors="$people" :fromAPI="true"/>
 
+            <!-- Pagination Links Display -->
             @if($people)
                 <nav class="flex items-center justify-between border-t border-gray-200  px-4 py-3 sm:px-6"
                      aria-label="Pagination">

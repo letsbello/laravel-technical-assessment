@@ -1,7 +1,5 @@
 @props([
     'actors',
-    'previous' => null,
-    'next' => null,
     'fromAPI' => false
 ])
 

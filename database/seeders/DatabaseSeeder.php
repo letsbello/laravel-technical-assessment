@@ -27,8 +27,10 @@ class DatabaseSeeder extends Seeder
         //            MovieSeeder::class,
         //        ]);
 
+        // Generate 15 Actor instances using the factory
         Actor::factory(15)
             ->hasAttached(
+                // Attach 3 Movie instances to each Actor using a many-to-many relationship
                 Movie::factory()->count(3)
             )->create();
     }

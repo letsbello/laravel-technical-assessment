@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Movie extends Model
 {
@@ -16,7 +17,7 @@ class Movie extends Model
         'release_date' => 'date:Y-m-d',
     ];
 
-    public function actors()
+    public function actors(): BelongsToMany
     {
         return $this->belongsToMany(Actor::class);
     }
