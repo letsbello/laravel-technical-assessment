@@ -2,6 +2,7 @@
 
 use App\Livewire\Actor\Index as ActorList;
 use App\Livewire\Actor\Show as ActorShow;
+use App\Livewire\StarWarsSearch;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
@@ -19,6 +20,9 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('actors/{actor}', ActorShow::class)
         ->name('actors.show');
+
+    Route::get('star-wars/search', StarWarsSearch::class)
+        ->name('star-wars.search');
 
     Route::redirect('settings', 'settings/profile');
 
