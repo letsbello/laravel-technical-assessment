@@ -1,11 +1,12 @@
 <?php
 
+use App\Livewire\ActorList;
+use App\Livewire\BrowseCharacters;
 use Illuminate\Support\Facades\Route;
 use Livewire\Volt\Volt;
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('home');
+Route::get('/', ActorList::class);
+Route::get('/browse_characters', BrowseCharacters::class);
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])

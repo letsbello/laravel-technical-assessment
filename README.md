@@ -1,51 +1,77 @@
-# Laravel Technical Assessment
+# 🌌 Star Wars Actor Explorer
+## Lucas Technical Assessment
+### Contact
+Lucas Breno de Souza Noronha Braga
 
-## Instructions
-1. Create a new repository in your Github account by cloning this repo
-2. Establish an initial commit with the provided code.
-3. Complete the functional requirements below & commit these changes to your repository. Open a PR with your changes so that they can be reviewed.
-4. Share your repository with us.
+[![Static Badge](https://img.shields.io/badge/WhatsApp-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](https://api.whatsapp.com/send?phone=12267247739)
+[![Static Badge](https://img.shields.io/badge/Microsoft_Outlook-0078D4?style=for-the-badge&logo=microsoft-outlook&logoColor=white)](mailto:lucasbbs@live.fr)
+[![Static Badge](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/lucasbbs/)
+[![Static Badge](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/Lucas-in-Canada/)
 
-## Setup
+### Description
+A Laravel + Livewire application that allows users to browse and search through a list of Star Wars actors. Users can view detailed movie appearances for each actor in a sleek modal interface.
 
-### System Requirements
--   Docker Desktop
--   WSL2 (Windows only)
+### ✨ Features
+- 🔍 Dynamic Search: Filter actors instantly by name using a responsive search input.
+- 🎬 Movie Modal: Click “Show Movies” to open a modal with a list of Star Wars movies associated with the actor.
+- 📦 Livewire Integration: UI updates are reactive and powered by Livewire without full-page reloads.
+- 💅 Tailwind CSS Styling: Responsive and elegant design with utility-first styling.
 
-Start by forking the repository to your own GitHub account. Then clone the forked repository to your local machine.
+### 📸 Screenshots
 
+#### 🖼️ Actor Modal Open
+Displays the modal for Adam Driver, listing his Star Wars movie appearances. The modal is styled cleanly and appears centered over the dark space-themed background.
+![image](https://github.com/user-attachments/assets/90c2ac28-6a63-4e3d-8a21-8c9d2c89cea8)
+
+#### 🖼️ Search in Action
+Demonstrates the live search functionality. As the user types "Adam", the actor list filters to show only matching results.
+![image](https://github.com/user-attachments/assets/c4d16605-8ae9-4649-a214-e67b0c62678e)
+
+#### 🖼️ Character Browser Screen
+Highlights the “Browse Characters” feature. The user can search for characters (not actors) dynamically. When the user types a name (e.g., “Adam”), the interface filters results in real-time.
+![image](https://github.com/user-attachments/assets/28809980-da4c-40c4-85e2-df93dfed6045)
+
+### 🌐 API Integration
+This project leverages the public SWAPI ([swapi.dev](https://swapi.dev)) — the Star Wars API — to fetch data about characters in real time. It uses Laravel's HTTP client to interact with the API and displays results within the UI without page reloads, thanks to Livewire.
+
+### 🚀 Getting Started
+Follow the steps below to run the project locally.
+#### ✅ Requirements
+- Docker Desktop
+- WSL2 (Windows only)
+- Git
+
+#### ⚙️ Installation
+
+1. Clone the repository
 ```bash
-git clone https://github.com/your-username/laravel-assessment-template
+git clone https://github.com/lucasbbs/laravel-assessment-template
 cd laravel-technical-assessment
 ```
 
-We use [Laravel Sail](https://laravel.com/docs/12.x/sail) so you should have good working knowledge of Docker. Start by copying over your env example file.
-
+2. Start by copying over your env example file.
 ```bash
 cp .env.example .env
 ```
 
-And then let's install sail.
+3. Start Sail and install dependencies. 
+```bash
+./vendor/bin/sail up -d
+./vendor/bin/sail composer install
+./vendor/bin/sail npm install
+./vendor/bin/sail npm run dev
+```
 
-### Running the application
+4. Run migrations and seed
+```bash
+./vendor/bin/sail artisan migrate --seed
+```
 
-Start the application using sail.
+### 🌐 Using the App
+1. Visit http://localhost
+2. Browse actors and view their movies using the modal
+3. Use the “Browse Characters” feature to search for Star Wars characters via swapi.dev
 
-You should now be able to access the application at `http://localhost`.
-
-You can stop the application with `Ctrl+C` and then run `docker compose down` to remove the containers.
-
-## Requirements
-
-This assessment is to see how your write clean, readable code, and how you structure your application. We're not awarding points on frontend styling but you can use whatever framework if you like.
-
-The application should:
-
--   Seed a database with at least 5 actors and at least 3 movies per actor
--   Use Eloquent to define the relationship between actors and movies
--   Have a view that displays the list of actors and their associated movies
--   Also include one input that allows the list of actors to be filtered. This can either be done with just PHP or with JavaScript, whichever you prefer. We're just looking for the end result.
--   Have a view with one input that allows the user to search people via the Star Wars API (https://swapi.dev/documentation#people) and then displays the data.
-    -   The API call should be done on the back end.
-
-You should use [Laravel Livewire](https://livewire.laravel.com/) for your views and actions.
+### 🧩 Data Model
+The application uses a normalized relational schema to manage actors and their movie appearances.
+![entity relationship diagram](https://github.com/user-attachments/assets/5529223e-03d2-4b79-b07c-f47f3eceb4c9)
