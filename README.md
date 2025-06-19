@@ -45,7 +45,10 @@ The application should:
 -   Use Eloquent to define the relationship between actors and movies
 -   Have a view that displays the list of actors and their associated movies
 -   Also include one input that allows the list of actors to be filtered. This can either be done with just PHP or with JavaScript, whichever you prefer. We're just looking for the end result.
--   Have a view with one input that allows the user to search people via the Star Wars API (https://swapi.dev/documentation#people) and then displays the data.
+-   Have a view with one input that allows the user to search people via the Star Wars API (SW-API: https://swapi.dev/documentation#people) and then displays the data.
     -   The API call should be done on the back end.
+    -   The SW-API call is a performance bottleneck, please implement some enhancements that will improve response times within our application
+-   Build some test cases which cover the actor/movie filtering behaviour using `Livewire::test()`
+-   Build some test cases which mock the SW-API and confirm the search and display works there as intended
 
 You should use [Laravel Livewire](https://livewire.laravel.com/) for your views and actions.
